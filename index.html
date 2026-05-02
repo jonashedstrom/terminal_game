@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RoRo Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="Game status">
+        <div>
+          <p class="eyebrow">RORO TERMINAL</p>
+          <h1>Terminal Game</h1>
+        </div>
+        <div class="round-panel">
+          <span id="timer">05:00</span>
+          <div class="round-actions">
+            <button id="startBtn" type="button">Start</button>
+            <button id="restartBtn" class="secondary" type="button">Restart</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="score-strip" aria-label="Results">
+        <article>
+          <span id="score">0</span>
+          <small>Score</small>
+        </article>
+        <article>
+          <span id="handled">20</span>
+          <small>Vehicles left</small>
+        </article>
+        <article>
+          <span id="orders">0/20</span>
+          <small id="ordersLabel">Loaded</small>
+        </article>
+        <article>
+          <span id="accuracy">100%</span>
+          <small>Precision</small>
+        </article>
+      </section>
+
+      <section class="operations">
+        <div class="mode-switch" role="group" aria-label="Flow">
+          <button class="active" data-flow="export" type="button">Export</button>
+          <button data-flow="import" type="button">Import</button>
+        </div>
+
+        <div class="scanner-panel">
+          <div>
+            <p class="label">Active vehicle</p>
+            <h2 id="vehicleId">V-104</h2>
+            <p id="vehicleMeta">EV sedan · Goteborg · Gate A</p>
+          </div>
+          <div class="scanner-action">
+            <div class="scanner-device" aria-hidden="true">
+              <span class="scanner-head"></span>
+              <span class="scanner-screen"></span>
+              <span class="scanner-light"></span>
+              <span class="scanner-grip"></span>
+            </div>
+            <button id="scanBtn" class="primary" type="button">Scan</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="mission-card" aria-label="Mission">
+        <div class="mission-copy">
+          <p class="label">Your job</p>
+          <h2 id="missionTitle">Load the vessel before time runs out</h2>
+          <p id="missionText">Every move follows a work order: scan and park at FPOR, then move from FPOR to the vessel.</p>
+        </div>
+        <div class="next-action">
+          <span>Next action</span>
+          <strong id="actionHint">Press Scan on the vehicle card</strong>
+        </div>
+      </section>
+
+      <section class="how-to-play" aria-label="Game steps">
+        <article id="stepScan" class="play-step active">
+          <span>1</span>
+          <strong id="stepScanTitle">Scan</strong>
+          <small id="stepScanText">Confirm the vehicle</small>
+        </article>
+        <article id="stepPlace" class="play-step">
+          <span>2</span>
+          <strong id="stepPlaceTitle">Park</strong>
+          <small id="stepPlaceText">Choose the highlighted zone</small>
+        </article>
+        <article id="stepFinish" class="play-step">
+          <span>3</span>
+          <strong id="stepFinishTitle">Load</strong>
+          <small id="stepFinishText">Use Load vehicle</small>
+        </article>
+      </section>
+
+      <section class="chain-strip" aria-label="Logistics chain">
+        <article class="chain-step active">
+          <span>01</span>
+          <strong>Gate</strong>
+        </article>
+        <article class="chain-step">
+          <span>02</span>
+          <strong>Yard</strong>
+        </article>
+        <article class="chain-step">
+          <span>03</span>
+          <strong>Process</strong>
+        </article>
+        <article class="chain-step">
+          <span>04</span>
+          <strong id="chainFinal">Vessel</strong>
+        </article>
+      </section>
+
+      <section class="processing-grid" aria-label="Processing centers">
+        <article class="process-card" data-process="VPC">
+          <p class="label">Vehicle Processing Center</p>
+          <h2>VPC</h2>
+          <strong class="process-count" data-process-count="VPC">0 vehicles</strong>
+          <p>Passenger vehicles, EV, PHEV and ICE processing.</p>
+          <button class="processBtn" data-center="VPC" type="button">Move to VPC</button>
+        </article>
+        <article class="process-card" data-process="EPC">
+          <p class="label">Equipment Processing Center</p>
+          <h2>EPC</h2>
+          <strong class="process-count" data-process-count="EPC">0 vehicles</strong>
+          <p>High & Heavy, excavators, harvesters and machinery.</p>
+          <button class="processBtn" data-center="EPC" type="button">Move to EPC</button>
+        </article>
+        <article class="process-card" data-process="FPOR">
+          <p class="label">Return lane</p>
+          <h2>Back to FPOR</h2>
+          <p>After processing, return the unit to its FPOR zone.</p>
+          <button id="returnFporBtn" type="button">Return to FPOR</button>
+        </article>
+        <article class="process-card" data-process="LOADING">
+          <p id="handoverLabel" class="label">Outbound handover</p>
+          <h2 id="handoverTitle">Loading Area</h2>
+          <strong class="process-count" data-process-count="LOADING">0 vehicles</strong>
+          <p id="handoverText">Final area after FPOR return, ready for pickup/loading.</p>
+          <button id="loadingAreaBtn" type="button">Move to Loading Area</button>
+        </article>
+        <article class="process-card truck-card" data-process="VEHICLE_TRUCK">
+          <p id="vehicleTruckLabel" class="label">Truck pickup - Vehicle</p>
+          <h2 id="vehicleTruckTitle">Truck pickup - Vehicle</h2>
+          <strong class="process-count" data-process-count="VEHICLE_TRUCK">0 vehicles</strong>
+          <div id="vehicleTruckVisual" class="truck-visual vehicle-truck-visual" aria-label="Vehicle truck slots"></div>
+          <p id="vehicleTruckText">Collects EV, PHEV and ICE units only.</p>
+          <button id="vehicleTruckBtn" type="button">Load Vehicle Truck</button>
+        </article>
+        <article class="process-card truck-card" data-process="HH_TRUCK">
+          <p id="hhTruckLabel" class="label">Truck pickup - H&H</p>
+          <h2 id="hhTruckTitle">Truck pickup - H&H</h2>
+          <strong class="process-count" data-process-count="HH_TRUCK">0 vehicles</strong>
+          <div id="hhTruckVisual" class="truck-visual hh-truck-visual" aria-label="H&H truck slots"></div>
+          <p id="hhTruckText">Collects High & Heavy equipment only.</p>
+          <button id="hhTruckBtn" type="button">Load H&H Trailer</button>
+        </article>
+      </section>
+
+      <section class="game-grid">
+        <section class="yard" aria-label="Terminal yard">
+          <header>
+            <div>
+              <p class="label">First Place of Rest</p>
+              <h2>Terminal</h2>
+            </div>
+            <span id="queueCount">20 left</span>
+          </header>
+
+          <div class="yard-map">
+            <button class="zone" data-zone="A" type="button">
+              <strong>A</strong>
+              <span>EV First Place of Rest</span>
+              <small class="yard-count" data-count-zone="A">0 vehicles</small>
+              <em class="zone-hint">Park here</em>
+            </button>
+            <button class="zone" data-zone="B" type="button">
+              <strong>B</strong>
+              <span>PHEV First Place of Rest</span>
+              <small class="yard-count" data-count-zone="B">0 vehicles</small>
+              <em class="zone-hint">Park here</em>
+            </button>
+            <button class="zone" data-zone="C" type="button">
+              <strong>C</strong>
+              <span>ICE First Place of Rest</span>
+              <small class="yard-count" data-count-zone="C">0 vehicles</small>
+              <em class="zone-hint">Park here</em>
+            </button>
+            <button class="zone" data-zone="D" type="button">
+              <strong>D</strong>
+              <span>High & Heavy FPR</span>
+              <small class="yard-count" data-count-zone="D">0 vehicles</small>
+              <em class="zone-hint">Park here</em>
+            </button>
+          </div>
+        </section>
+
+        <section class="ship-card" aria-label="Vessel">
+          <header>
+            <div>
+              <p class="label">Stern ramp loading</p>
+              <h2>Toronto</h2>
+            </div>
+            <span id="shipLoad">0/20</span>
+          </header>
+
+          <div class="ship-visual" aria-hidden="true">
+            <svg viewBox="0 0 760 260" role="img">
+              <defs>
+                <linearGradient id="seaGlow" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#c9e6ed"/>
+                  <stop offset="1" stop-color="#007c89"/>
+                </linearGradient>
+                <linearGradient id="hullShade" x1="0" x2="1">
+                  <stop offset="0" stop-color="#17212b"/>
+                  <stop offset="0.55" stop-color="#26323d"/>
+                  <stop offset="1" stop-color="#121a22"/>
+                </linearGradient>
+              </defs>
+              <path class="sea" d="M0 188c54 17 84-15 138 0 53 15 88-16 141 0 54 16 93-16 148 0 55 16 93-16 148 0 54 16 103-15 154 0 13 4 23 6 31 6v66H0z"/>
+              <path class="wake" d="M38 204c71 27 142 24 218 8 74-16 127-8 196 10 78 21 165 20 270-8"/>
+              <path class="lower-hull" d="M31 119h645c35 0 63 16 72 42-20 39-64 59-132 59H130c-49 0-84-17-105-52z"/>
+              <path class="upper-hull" d="M46 73h548c51 0 97 21 134 61-28 14-64 20-108 20H94c-22 0-38-9-48-27z"/>
+              <path class="bow" d="M595 73c68 10 116 32 142 65-19 12-62 18-129 17l-76-33z"/>
+              <path class="stern" d="M46 73h94l35 58H62c-15 0-25-7-31-20z"/>
+              <path class="deckline" d="M90 71h507l71 47H123z"/>
+              <path class="main-deck" d="M128 48h395l70 45H103z"/>
+              <path class="aft-block" d="M80 30h112l47 50H66z"/>
+              <path class="aft-top" d="M94 14h88l33 28H82z"/>
+              <path class="bow-cover" d="M566 50c57 6 101 27 132 61-49 10-94 11-136 2z"/>
+              <path class="bridge-base" d="M505 70h116l46 29-15 18H478z"/>
+              <path class="bridge" d="M517 42h97l43 27-17 18H492z"/>
+              <path class="bridge-roof" d="M530 28h82l46 20-15 12H501z"/>
+              <g class="bridge-windows">
+                <rect x="526" y="51" width="13" height="8"/>
+                <rect x="545" y="51" width="13" height="8"/>
+                <rect x="564" y="51" width="13" height="8"/>
+                <rect x="583" y="51" width="13" height="8"/>
+                <rect x="602" y="51" width="13" height="8"/>
+                <rect x="621" y="56" width="12" height="7"/>
+              </g>
+              <g class="deck-cargo">
+                <rect x="154" y="74" width="24" height="13"/>
+                <rect x="190" y="75" width="28" height="14"/>
+                <rect x="244" y="72" width="32" height="16"/>
+                <rect x="303" y="75" width="26" height="13"/>
+                <rect x="358" y="70" width="38" height="18"/>
+                <rect x="421" y="74" width="30" height="14"/>
+                <rect x="455" y="76" width="20" height="12"/>
+              </g>
+              <g class="rails">
+                <path d="M116 92h402"/>
+                <path d="M116 101h426"/>
+                <path d="M132 84v19M165 84v19M198 84v19M231 84v19M264 84v19M297 84v19M330 84v19M363 84v19M396 84v19M429 84v19M462 84v19M495 84v19"/>
+              </g>
+              <g class="masts">
+                <path d="M382 22v73"/>
+                <path d="M372 35h26M375 51h20"/>
+                <path d="M121 10v36M137 12v38"/>
+                <path d="M110 17h40"/>
+              </g>
+              <g class="funnels">
+                <path d="M70 3h15l6 44H76z"/>
+                <path d="M93 0h18l7 48H100z"/>
+                <path d="M119 8h18l3 42h-20z"/>
+              </g>
+              <g class="crane">
+                <path d="M205 25l41 24"/>
+                <path d="M210 25h16v35h-16z"/>
+                <path d="M236 45l9 13"/>
+              </g>
+              <g class="hull-windows">
+                <rect x="70" y="142" width="11" height="6"/>
+                <rect x="90" y="142" width="11" height="6"/>
+                <rect x="516" y="135" width="13" height="7"/>
+                <rect x="541" y="135" width="13" height="7"/>
+                <rect x="566" y="135" width="13" height="7"/>
+                <rect x="590" y="135" width="13" height="7"/>
+                <rect x="694" y="164" width="14" height="7"/>
+                <rect x="713" y="164" width="14" height="7"/>
+              </g>
+              <text class="ship-name" x="115" y="160">WALLENIUS WILHELMSEN</text>
+            </svg>
+          </div>
+
+          <div id="deckSlots" class="deck-slots" aria-label="Deck slots"></div>
+          <button id="loadBtn" type="button">Load vehicle</button>
+          <p id="shipHelp" class="area-help">Park the vehicle in the correct First Place of Rest, then load it here.</p>
+        </section>
+      </section>
+
+      <section class="workbench" aria-label="Work orders">
+        <header>
+          <div>
+            <p id="workbenchLabel" class="label">Active work order</p>
+            <h2 id="workbenchTitle">WO-----</h2>
+          </div>
+          <button id="completeBtn" type="button">Follow WO</button>
+        </header>
+        <p id="workbenchHelp" class="area-help">Work orders drive every move: first scan and park at FPOR, then move the vehicle from FPOR to the vessel.</p>
+        <div id="workOrders" class="work-orders"></div>
+      </section>
+
+      <section class="event-log" aria-label="Event log">
+        <div id="log"></div>
+      </section>
+    </main>
+
+    <div id="completionFlash" class="completion-flash" aria-live="polite">
+      <div>
+        <span id="completionSound">TOOT TOOT</span>
+        <strong id="completionTitle">All work orders complete</strong>
+        <p id="completionText">Vessel loaded and ready to sail.</p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
