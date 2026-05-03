@@ -518,20 +518,28 @@ function renderOrders() {
 }
 
 function importStatus() {
-  if (state.importStep === "toCenter") return "Scan to center";
+  if (state.importStep === "toCenter") return state.scanned ? "Move to center" : "Scan from FPOR";
   if (state.importStep === "processing") return "Process";
   if (state.importStep === "returnFpor") return "Return FPOR";
-  if (state.importStep === "loadingArea") return "Loading area";
+  if (state.importStep === "loadingArea") return state.scanned ? "Move to Loading Area" : "Scan from FPOR";
   if (state.importStep === "truck") return "Truck load";
   return "At FPOR";
 }
 
 function importActionText(item) {
   const center = centerFor(item);
-  if (state.importStep === "toCenter") return `${item.wo}: scan ${item.id} from FPOR Zone ${item.target} to ${center}.`;
+  if (state.importStep === "toCenter") {
+    return state.scanned
+      ? `${item.wo}: move ${item.id} to ${center}.`
+      : `${item.wo}: scan ${item.id} out from FPOR Zone ${item.target}.`;
+  }
   if (state.importStep === "processing") return `${item.wo}: complete processing at ${center}.`;
   if (state.importStep === "returnFpor") return `${item.wo}: return ${item.id} from ${center} to FPOR Zone ${item.target}.`;
-  if (state.importStep === "loadingArea") return `${item.wo}: move ${item.id} from FPOR to Unloading Area.`;
+  if (state.importStep === "loadingArea") {
+    return state.scanned
+      ? `${item.wo}: move ${item.id} to Loading Area.`
+      : `${item.wo}: scan ${item.id} out from FPOR Zone ${item.target}.`;
+  }
   if (state.importStep === "truck") return `${item.wo}: load ${item.id} on the correct ${centerFor(item) === "EPC" ? "Truck pickup - H&H" : "Truck pickup - Vehicle"}.`;
   return `${item.wo}: scan ${item.id} and park it in FPOR Zone ${item.target}.`;
 }
@@ -579,6 +587,11 @@ function render() {
   document.querySelectorAll(".zone").forEach((zone) => {
     zone.classList.toggle("selected", zone.dataset.zone === state.selectedZone);
     zone.classList.toggle("recommended", (fpor || vesselUnload) && state.scanned && zone.dataset.zone === item.target);
+    zone.classList.toggle("from-here", state.flow === "import" && !state.scanned &&
+      ((processing && state.importStep === "toCenter") || (importLoading && state.importStep === "loadingArea")) &&
+      zone.dataset.zone === item.target);
+    const hint = zone.querySelector(".zone-hint");
+    if (hint) hint.textContent = zone.classList.contains("from-here") ? "From here" : "Park here";
   });
 
   document.querySelectorAll(".chain-step").forEach((step, index) => {
@@ -586,7 +599,7 @@ function render() {
     step.classList.toggle("active", index === activeIndex);
   });
 
-  stepScanEl.classList.toggle("active", (fpor && !state.scanned) || truckUnload || (vesselUnload && !state.scanned));
+  stepScanEl.classList.toggle("active", (fpor && !state.scanned) || truckUnload || (vesselUnload && !state.scanned) || (processing && state.importStep === "toCenter" && !state.scanned));
   stepPlaceEl.classList.toggle("active", (fpor && state.scanned) || (vesselUnload && state.scanned));
   stepFinishEl.classList.toggle("active", loading || processing || importLoading);
 
@@ -599,7 +612,7 @@ function render() {
         : "Stage every vehicle at the correct FPOR";
   missionTextEl.textContent = state.flow === "import"
     ? importLoading
-      ? "All units are processed and back at FPOR. Move each one to Unloading Area, then load the correct truck pickup."
+      ? "All units are processed and back at FPOR. Scan from FPOR, move each one to Loading Area, then load the correct truck pickup."
       : vesselUnload || fpor
         ? "Import starts with Toronto pre-loaded. Scan each unit off the vessel, unload it, and park it at the correct FPOR."
         : "Move cars to VPC or heavy equipment to EPC, complete processing, and return everything to FPOR."
@@ -614,12 +627,12 @@ function render() {
   stepPlaceTextEl.textContent = complete ? "All FPOR done" : `Zone ${item.target} for ${item.category}`;
   stepFinishTitleEl.textContent = state.flow === "import" ? "Process" : "Load deck";
   stepFinishTextEl.textContent = state.flow === "import" ? "VPC/EPC + trucks" : "Choose one of 5 decks";
-  chainFinalEl.textContent = state.flow === "import" ? "Unloading Area" : "Vessel";
+  chainFinalEl.textContent = state.flow === "import" ? "Loading Area" : "Vessel";
 
-  handoverLabelEl.textContent = state.flow === "import" ? "Inbound handover" : "Outbound handover";
-  handoverTitleEl.textContent = state.flow === "import" ? "Unloading Area" : "Loading Area";
+  handoverLabelEl.textContent = "Outbound handover";
+  handoverTitleEl.textContent = "Loading Area";
   handoverTextEl.textContent = state.flow === "import"
-    ? "Inbound handover area before truck pickup completion."
+    ? "Loading Area before truck pickup completion."
     : "Outbound handover area used after truck unload before FPOR staging.";
   vehicleTruckLabelEl.textContent = state.flow === "export" ? "Truck Unload - Vehicle" : "Truck pickup - Vehicle";
   vehicleTruckTitleEl.textContent = vehicleTruckLabelEl.textContent;
@@ -637,7 +650,7 @@ function render() {
       ? `${item.wo}: Deck ${state.selectedDeck + 1} has capacity. Load ${item.id}.`
       : `${item.wo}: choose a deck with fewer than 5 vehicles.`
     : state.flow === "import"
-      ? "Import uses FPOR, VPC/EPC, Unloading Area and truck pickup. Vessel deck loading is export only."
+      ? "Import uses FPOR, VPC/EPC, Loading Area and truck pickup. Vessel deck loading is export only."
       : "Loading starts after all 20 vehicles are parked at FPOR.";
 
   workbenchLabelEl.textContent = importLoading
@@ -670,14 +683,13 @@ function render() {
       ((state.importStep === "toCenter" && process === expectedCenter) ||
         (state.importStep === "processing" && process === expectedCenter) ||
         (state.importStep === "returnFpor" && process === expectedCenter) ||
-        (state.importStep === "loadingArea" && process === "LOADING") ||
+        (state.importStep === "loadingArea" && state.scanned && process === "LOADING") ||
         (state.importStep === "truck" && process === (expectedCenter === "EPC" ? "HH_TRUCK" : "VEHICLE_TRUCK")));
     card.classList.toggle("ready", ready);
-    card.classList.toggle("from-here", processing && state.importStep === "toCenter" && process === expectedCenter);
     card.classList.toggle("inactive", state.flow === "export" && (process === "VPC" || process === "EPC"));
   });
   processBtns.forEach((button) => {
-    button.disabled = !(processing && state.importStep === "toCenter" && button.dataset.center === expectedCenter);
+    button.disabled = !(processing && state.importStep === "toCenter" && state.scanned && button.dataset.center === expectedCenter);
   });
   executeBtns.forEach((button) => {
     button.disabled = !(processing && state.importStep === "processing" && button.dataset.center === expectedCenter);
@@ -685,13 +697,13 @@ function render() {
   returnCenterBtns.forEach((button) => {
     button.disabled = !(processing && state.importStep === "returnFpor" && button.dataset.center === expectedCenter);
   });
-  loadingAreaBtn.disabled = !(importLoading && state.importStep === "loadingArea");
-  loadingAreaBtn.textContent = state.flow === "import" ? "Move to Unloading Area" : "Move to Loading Area";
-  vehicleTruckBtn.textContent = state.flow === "export" ? "Unload Vehicle Truck" : "Load Vehicle Truck";
-  hhTruckBtn.textContent = state.flow === "export" ? "Unload H&H Truck" : "Load H&H Truck";
+  loadingAreaBtn.disabled = !(importLoading && state.importStep === "loadingArea" && state.scanned);
+  loadingAreaBtn.textContent = "Move to Loading Area";
+  vehicleTruckBtn.textContent = state.flow === "export" ? "Unload Vehicle Truck" : "Load Vehicle";
+  hhTruckBtn.textContent = state.flow === "export" ? "Unload H&H Truck" : "Load H&H";
   vehicleTruckBtn.disabled = !(truckUnload || (importLoading && state.importStep === "truck"));
   hhTruckBtn.disabled = !(truckUnload || (importLoading && state.importStep === "truck"));
-  scanBtn.disabled = complete || (!fpor && !vesselUnload) || state.scanned;
+  scanBtn.disabled = complete || (!fpor && !vesselUnload && !(processing && state.importStep === "toCenter") && !(importLoading && state.importStep === "loadingArea")) || state.scanned;
   loadBtn.disabled = complete || !deckReady;
   loadBtn.textContent = loading ? `Load ${item.id}` : "Load vehicle";
   document.querySelector("#completeBtn").disabled = processing;
@@ -763,12 +775,16 @@ function startRound() {
 }
 
 function scanVehicle() {
-  if (!["fpor", "vesselUnload"].includes(state.phase) || state.scanned) return;
+  const processingScan = state.flow === "import" && state.phase === "processing" && state.importStep === "toCenter";
+  const loadingAreaScan = state.flow === "import" && state.phase === "importLoading" && state.importStep === "loadingArea";
+  if ((!["fpor", "vesselUnload"].includes(state.phase) && !processingScan && !loadingAreaScan) || state.scanned) return;
 
   const item = activeVehicle();
   state.scanned = true;
   state.score += 10;
-  addLog(`${item.wo}: ${item.id} scanned. Next: FPOR Zone ${item.target}.`);
+  addLog(processingScan || loadingAreaScan
+    ? `${item.wo}: ${item.id} scanned out from FPOR Zone ${item.target}. Next: ${loadingAreaScan ? "Loading Area" : centerFor(item)}.`
+    : `${item.wo}: ${item.id} scanned. Next: FPOR Zone ${item.target}.`);
   render();
 }
 
@@ -914,6 +930,14 @@ function moveToProcessingCenter(center) {
 
   const item = activeVehicle();
   const expectedCenter = centerFor(item);
+  if (!state.scanned) {
+    state.mistakes += 1;
+    state.score = Math.max(0, state.score - 8);
+    addLog(`${item.wo}: scan ${item.id} out from FPOR Zone ${item.target} before moving to ${expectedCenter}.`);
+    render();
+    return;
+  }
+
   if (center !== expectedCenter) {
     state.mistakes += 1;
     state.score = Math.max(0, state.score - 12);
@@ -924,8 +948,9 @@ function moveToProcessingCenter(center) {
 
   state.importStep = "processing";
   state.locations[item.id] = center;
+  state.scanned = false;
   state.score += 25;
-  addLog(`${item.wo}: ${item.id} scanned from FPOR Zone ${item.target} to ${center}. Execute the WO.`);
+  addLog(`${item.wo}: ${item.id} moved to ${center}. Execute the WO.`);
   render();
 }
 
@@ -963,10 +988,19 @@ function moveToLoadingArea() {
   if (state.flow !== "import" || state.phase !== "importLoading" || state.importStep !== "loadingArea") return;
 
   const item = activeVehicle();
+  if (!state.scanned) {
+    state.mistakes += 1;
+    state.score = Math.max(0, state.score - 8);
+    addLog(`${item.wo}: scan ${item.id} out from FPOR Zone ${item.target} before moving to Loading Area.`);
+    render();
+    return;
+  }
+
   state.score += 30;
   state.locations[item.id] = "LOADING";
+  state.scanned = false;
   state.importStep = "truck";
-  addLog(`${item.wo}: ${item.id} moved to Unloading Area. Load the correct truck pickup.`);
+  addLog(`${item.wo}: ${item.id} moved to Loading Area. Load the correct truck pickup.`);
   render();
 }
 
