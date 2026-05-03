@@ -116,24 +116,28 @@
 
       <section class="processing-grid" aria-label="Processing centers">
         <article class="process-card" data-process="VPC">
+          <em class="center-hint">From here</em>
           <p class="label">Vehicle Processing Center</p>
           <h2>VPC</h2>
           <strong class="process-count" data-process-count="VPC">0 vehicles</strong>
           <p>Passenger vehicles, EV, PHEV and ICE processing.</p>
-          <button class="processBtn" data-center="VPC" type="button">Move to VPC</button>
+          <div class="center-actions">
+            <button class="processBtn" data-center="VPC" type="button">Scan to VPC</button>
+            <button class="executeBtn" data-center="VPC" type="button">Execute WO</button>
+            <button class="returnCenterBtn" data-center="VPC" type="button">Return to FPOR</button>
+          </div>
         </article>
         <article class="process-card" data-process="EPC">
+          <em class="center-hint">From here</em>
           <p class="label">Equipment Processing Center</p>
           <h2>EPC</h2>
           <strong class="process-count" data-process-count="EPC">0 vehicles</strong>
           <p>High & Heavy, excavators, harvesters and machinery.</p>
-          <button class="processBtn" data-center="EPC" type="button">Move to EPC</button>
-        </article>
-        <article class="process-card" data-process="FPOR">
-          <p class="label">Return lane</p>
-          <h2>Back to FPOR</h2>
-          <p>After processing, return the unit to its FPOR zone.</p>
-          <button id="returnFporBtn" type="button">Return to FPOR</button>
+          <div class="center-actions">
+            <button class="processBtn" data-center="EPC" type="button">Scan to EPC</button>
+            <button class="executeBtn" data-center="EPC" type="button">Execute WO</button>
+            <button class="returnCenterBtn" data-center="EPC" type="button">Return to FPOR</button>
+          </div>
         </article>
         <article class="process-card" data-process="LOADING">
           <p id="handoverLabel" class="label">Outbound handover</p>
@@ -165,7 +169,7 @@
           <header>
             <div>
               <p class="label">First Place of Rest</p>
-              <h2>Terminal</h2>
+              <h2>Southampton Terminal</h2>
             </div>
             <span id="queueCount">20 left</span>
           </header>
@@ -226,6 +230,12 @@
               <path class="upper-hull" d="M46 73h548c51 0 97 21 134 61-28 14-64 20-108 20H94c-22 0-38-9-48-27z"/>
               <path class="bow" d="M595 73c68 10 116 32 142 65-19 12-62 18-129 17l-76-33z"/>
               <path class="stern" d="M46 73h94l35 58H62c-15 0-25-7-31-20z"/>
+              <g class="stern-ramp">
+                <path d="M47 108l-35 51 43 26 43-55z"/>
+                <path d="M50 116l-25 39 29 18 32-41z"/>
+                <path d="M60 118l-19 44"/>
+                <path d="M77 124l-22 45"/>
+              </g>
               <path class="deckline" d="M90 71h507l71 47H123z"/>
               <path class="main-deck" d="M128 48h395l70 45H103z"/>
               <path class="aft-block" d="M80 30h112l47 50H66z"/>
