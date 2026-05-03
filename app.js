@@ -1,24 +1,24 @@
 let vehicles = [
-  { id: "EV-104", wo: "WO-1234", type: "EV sedan", category: "EV", origin: "Goteborg", gate: "Gate A", target: "A", icon: "EV" },
-  { id: "PH-219", wo: "WO-1235", type: "PHEV SUV", category: "PHEV", origin: "Umea", gate: "Gate B", target: "B", icon: "PH" },
-  { id: "IC-332", wo: "WO-1236", type: "ICE sedan", category: "ICE", origin: "Malmo", gate: "Gate C", target: "C", icon: "IC" },
-  { id: "EV-418", wo: "WO-1237", type: "EV van", category: "EV", origin: "Oslo", gate: "Gate A", target: "A", icon: "EV" },
-  { id: "PH-501", wo: "WO-1238", type: "PHEV wagon", category: "PHEV", origin: "Skovde", gate: "Gate B", target: "B", icon: "PH" },
-  { id: "IC-612", wo: "WO-1239", type: "ICE coupe", category: "ICE", origin: "Stockholm", gate: "Gate C", target: "C", icon: "IC" },
-  { id: "EV-727", wo: "WO-1240", type: "Compact EV", category: "EV", origin: "Lund", gate: "Gate A", target: "A", icon: "EV" },
-  { id: "PH-804", wo: "WO-1241", type: "PHEV crossover", category: "PHEV", origin: "Vasteras", gate: "Gate B", target: "B", icon: "PH" },
-  { id: "IC-915", wo: "WO-1242", type: "ICE hatchback", category: "ICE", origin: "Trollhattan", gate: "Gate C", target: "C", icon: "IC" },
-  { id: "EV-026", wo: "WO-1243", type: "EV pickup", category: "EV", origin: "Kiruna", gate: "Gate A", target: "A", icon: "EV" },
-  { id: "HH-301", wo: "WO-1244", type: "Tractor", category: "High & Heavy", origin: "Oslo", gate: "Gate D", target: "D", icon: "HH" },
-  { id: "HH-302", wo: "WO-1245", type: "Harvester", category: "High & Heavy", origin: "Vasteras", gate: "Gate D", target: "D", icon: "HH" },
-  { id: "HH-303", wo: "WO-1246", type: "Mining loader", category: "High & Heavy", origin: "Kiruna", gate: "Gate D", target: "D", icon: "HH" },
-  { id: "HH-304", wo: "WO-1247", type: "Excavator", category: "High & Heavy", origin: "Umea", gate: "Gate D", target: "D", icon: "HH" },
-  { id: "HH-305", wo: "WO-1248", type: "Wheel loader", category: "High & Heavy", origin: "Lulea", gate: "Gate D", target: "D", icon: "HH" },
-  { id: "HH-306", wo: "WO-1249", type: "Bulldozer", category: "High & Heavy", origin: "Boras", gate: "Gate D", target: "D", icon: "HH" },
-  { id: "HH-307", wo: "WO-1250", type: "Crane truck", category: "High & Heavy", origin: "Malmo", gate: "Gate D", target: "D", icon: "HH" },
-  { id: "HH-308", wo: "WO-1251", type: "Forestry machine", category: "High & Heavy", origin: "Sundsvall", gate: "Gate D", target: "D", icon: "HH" },
-  { id: "HH-309", wo: "WO-1252", type: "Road grader", category: "High & Heavy", origin: "Orebro", gate: "Gate D", target: "D", icon: "HH" },
-  { id: "HH-310", wo: "WO-1253", type: "Tracked excavator", category: "High & Heavy", origin: "Gavle", gate: "Gate D", target: "D", icon: "HH" }
+  { id: "EV-1", wo: "WO-1234", type: "EV sedan", category: "EV", origin: "Goteborg", gate: "Gate A", target: "A", icon: "EV" },
+  { id: "PH-1", wo: "WO-1235", type: "PHEV SUV", category: "PHEV", origin: "Umea", gate: "Gate B", target: "B", icon: "PH" },
+  { id: "IC-1", wo: "WO-1236", type: "ICE sedan", category: "ICE", origin: "Malmo", gate: "Gate C", target: "C", icon: "IC" },
+  { id: "EV-2", wo: "WO-1237", type: "EV van", category: "EV", origin: "Oslo", gate: "Gate A", target: "A", icon: "EV" },
+  { id: "PH-2", wo: "WO-1238", type: "PHEV wagon", category: "PHEV", origin: "Skovde", gate: "Gate B", target: "B", icon: "PH" },
+  { id: "IC-2", wo: "WO-1239", type: "ICE coupe", category: "ICE", origin: "Stockholm", gate: "Gate C", target: "C", icon: "IC" },
+  { id: "EV-3", wo: "WO-1240", type: "Compact EV", category: "EV", origin: "Lund", gate: "Gate A", target: "A", icon: "EV" },
+  { id: "PH-3", wo: "WO-1241", type: "PHEV crossover", category: "PHEV", origin: "Vasteras", gate: "Gate B", target: "B", icon: "PH" },
+  { id: "IC-3", wo: "WO-1242", type: "ICE hatchback", category: "ICE", origin: "Trollhattan", gate: "Gate C", target: "C", icon: "IC" },
+  { id: "EV-4", wo: "WO-1243", type: "EV pickup", category: "EV", origin: "Kiruna", gate: "Gate A", target: "A", icon: "EV" },
+  { id: "HH-1", wo: "WO-1244", type: "Tractor", category: "High & Heavy", origin: "Oslo", gate: "Gate D", target: "D", icon: "HH" },
+  { id: "HH-2", wo: "WO-1245", type: "Harvester", category: "High & Heavy", origin: "Vasteras", gate: "Gate D", target: "D", icon: "HH" },
+  { id: "HH-3", wo: "WO-1246", type: "Mining loader", category: "High & Heavy", origin: "Kiruna", gate: "Gate D", target: "D", icon: "HH" },
+  { id: "HH-4", wo: "WO-1247", type: "Excavator", category: "High & Heavy", origin: "Umea", gate: "Gate D", target: "D", icon: "HH" },
+  { id: "HH-5", wo: "WO-1248", type: "Wheel loader", category: "High & Heavy", origin: "Lulea", gate: "Gate D", target: "D", icon: "HH" },
+  { id: "HH-6", wo: "WO-1249", type: "Bulldozer", category: "High & Heavy", origin: "Boras", gate: "Gate D", target: "D", icon: "HH" },
+  { id: "HH-7", wo: "WO-1250", type: "Crane truck", category: "High & Heavy", origin: "Malmo", gate: "Gate D", target: "D", icon: "HH" },
+  { id: "HH-8", wo: "WO-1251", type: "Forestry machine", category: "High & Heavy", origin: "Sundsvall", gate: "Gate D", target: "D", icon: "HH" },
+  { id: "HH-9", wo: "WO-1252", type: "Road grader", category: "High & Heavy", origin: "Orebro", gate: "Gate D", target: "D", icon: "HH" },
+  { id: "HH-10", wo: "WO-1253", type: "Tracked excavator", category: "High & Heavy", origin: "Gavle", gate: "Gate D", target: "D", icon: "HH" }
 ];
 
 const ROUND_VEHICLE_LIMIT = 20;
@@ -74,7 +74,8 @@ const deckSlotsEl = document.querySelector("#deckSlots");
 const loadBtn = document.querySelector("#loadBtn");
 const processCards = document.querySelectorAll(".process-card");
 const processBtns = document.querySelectorAll(".processBtn");
-const returnFporBtn = document.querySelector("#returnFporBtn");
+const executeBtns = document.querySelectorAll(".executeBtn");
+const returnCenterBtns = document.querySelectorAll(".returnCenterBtn");
 const loadingAreaBtn = document.querySelector("#loadingAreaBtn");
 const vehicleTruckBtn = document.querySelector("#vehicleTruckBtn");
 const hhTruckBtn = document.querySelector("#hhTruckBtn");
@@ -317,7 +318,7 @@ function renderDeck() {
       <span class="deck-cells">
         ${Array.from({ length: DECK_CAPACITY }, (_, slotIndex) => {
           const vehicleId = loads[slotIndex];
-          return `<span class="deck-cell${vehicleId ? " filled" : ""}">${vehicleId ? vehicleId.split("-")[0] : slotIndex + 1}</span>`;
+          return `<span class="deck-cell${vehicleId ? " filled" : ""}">${vehicleId || slotIndex + 1}</span>`;
         }).join("")}
       </span>
     `;
@@ -345,8 +346,7 @@ function renderTruckVisual(kind, container) {
     <span class="truck-slots">
       ${Array.from({ length: capacity }, (_, index) => {
         const vehicleId = items[index];
-        const icon = kind === "HH_TRUCK" ? "H&H" : (vehicleId ? vehicleId.split("-")[0] : index + 1);
-        return `<span class="truck-slot${vehicleId ? " filled" : ""}" title="${vehicleId ? `${verb} ${vehicleId}` : `Slot ${index + 1}`}">${vehicleId ? icon : index + 1}</span>`;
+        return `<span class="truck-slot${vehicleId ? " filled" : ""}" title="${vehicleId ? `${verb} ${vehicleId}` : `Slot ${index + 1}`}">${vehicleId || index + 1}</span>`;
       }).join("")}
     </span>
   `;
@@ -359,15 +359,26 @@ function truckScene(kind, items) {
 function vehicleTruckScene(items) {
   const carSlots = Array.from({ length: VEHICLE_TRUCK_CAPACITY }, (_, index) => {
     const occupied = Boolean(items[index]);
-    const x = 164 + (index % 4) * 83;
-    const y = index < 4 ? 40 : 84;
-    const color = occupied ? "#e95b2a" : "#ffffff";
-    const stroke = occupied ? "#ffffff" : "#8aa0a8";
+    const positions = [
+      [162, 22],
+      [246, 22],
+      [330, 22],
+      [414, 22],
+      [204, 75],
+      [300, 75],
+      [396, 75]
+    ];
+    const [x, y] = positions[index];
+    const color = occupied ? (index % 3 === 0 ? "#f4f7f8" : index % 3 === 1 ? "#79d4df" : "#f4c29a") : "#ffffff";
+    const windowColor = occupied ? "#008fc1" : "#cde9ec";
+    const stroke = occupied ? "#26323d" : "#8aa0a8";
     return `
       <g class="carrier-car${occupied ? " occupied" : ""}">
-        <rect x="${x}" y="${y}" width="52" height="22" rx="6" fill="${color}" stroke="${stroke}" stroke-width="3"/>
-        <circle cx="${x + 12}" cy="${y + 24}" r="4" fill="#26323d"/>
-        <circle cx="${x + 40}" cy="${y + 24}" r="4" fill="#26323d"/>
+        <path d="M${x} ${y + 21}h8l9-13h30l12 13h8v16h-67z" fill="${color}" stroke="${stroke}" stroke-width="2"/>
+        <path d="M${x + 19} ${y + 10}h25l9 11h-34z" fill="${windowColor}" stroke="${stroke}" stroke-width="1.5"/>
+        <line x1="${x + 39}" y1="${y + 11}" x2="${x + 39}" y2="${y + 35}" stroke="${stroke}" stroke-width="1.5"/>
+        <circle cx="${x + 15}" cy="${y + 39}" r="5" fill="#26323d"/>
+        <circle cx="${x + 54}" cy="${y + 39}" r="5" fill="#26323d"/>
       </g>`;
   }).join("");
 
@@ -375,43 +386,44 @@ function vehicleTruckScene(items) {
     <svg class="truck-scene vehicle-carrier-scene" viewBox="0 0 560 150" aria-hidden="true">
       <rect width="560" height="150" rx="8" fill="#cde9ec"/>
       <rect y="106" width="560" height="44" fill="#e8eef0"/>
-      <line x1="142" y1="42" x2="512" y2="42" stroke="#9b5a26" stroke-width="7"/>
-      <line x1="142" y1="87" x2="512" y2="87" stroke="#9b5a26" stroke-width="7"/>
-      <line x1="142" y1="36" x2="142" y2="109" stroke="#9b5a26" stroke-width="7"/>
-      <line x1="512" y1="36" x2="512" y2="109" stroke="#9b5a26" stroke-width="7"/>
-      <line x1="225" y1="38" x2="225" y2="109" stroke="#9b5a26" stroke-width="5"/>
-      <line x1="308" y1="38" x2="308" y2="109" stroke="#9b5a26" stroke-width="5"/>
-      <line x1="391" y1="38" x2="391" y2="109" stroke="#9b5a26" stroke-width="5"/>
-      <path d="M24 72h80l22 24h32v28H24z" fill="#f4c20d"/>
-      <path d="M28 76h54v22H28z" fill="#d71920"/>
-      <path d="M88 76h14l18 20H88z" fill="#f5fbff"/>
-      <text x="39" y="92" fill="#d71920" font-size="18" font-weight="900">DHL</text>
-      <rect x="30" y="110" width="92" height="10" rx="5" fill="#26323d"/>
-      <rect x="122" y="102" width="410" height="8" rx="4" fill="#26323d"/>
+      <path d="M26 80l21-26h58v58h31v15H26z" fill="#f8fafb" stroke="#26323d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M38 64h36v39H38z" fill="#008fc1" stroke="#26323d" stroke-width="2"/>
+      <path d="M80 60h25v52H80z" fill="#ffffff" stroke="#26323d" stroke-width="2"/>
+      <path d="M102 112h42v15h-42z" fill="#f8fafb" stroke="#26323d" stroke-width="3"/>
+      <path d="M138 109h22v10h-22z" fill="#26323d"/>
+      <path d="M150 42h378v13h-378z" fill="#ff2f65" stroke="#b3163c" stroke-width="3"/>
+      <path d="M150 94h378v13h-378z" fill="#ff2f65" stroke="#b3163c" stroke-width="3"/>
+      <path d="M150 42h14v65h-14z" fill="#ff2f65" stroke="#b3163c" stroke-width="3"/>
+      <path d="M294 42h14v65h-14z" fill="#ff2f65" stroke="#b3163c" stroke-width="3"/>
+      <path d="M448 42h14v65h-14z" fill="#ff2f65" stroke="#b3163c" stroke-width="3"/>
+      <path d="M150 126h378" stroke="#ff2f65" stroke-width="9" stroke-linecap="round"/>
+      <path d="M302 107h226v20h-246z" fill="#ff2f65" stroke="#b3163c" stroke-width="3" stroke-linejoin="round"/>
       ${carSlots}
       <circle cx="58" cy="126" r="12" fill="#26323d"/>
       <circle cx="58" cy="126" r="5" fill="#ffffff"/>
-      <circle cx="124" cy="126" r="12" fill="#26323d"/>
-      <circle cx="124" cy="126" r="5" fill="#ffffff"/>
-      <circle cx="438" cy="126" r="12" fill="#26323d"/>
-      <circle cx="438" cy="126" r="5" fill="#ffffff"/>
-      <circle cx="493" cy="126" r="12" fill="#26323d"/>
-      <circle cx="493" cy="126" r="5" fill="#ffffff"/>
+      <circle cx="121" cy="126" r="12" fill="#26323d"/>
+      <circle cx="121" cy="126" r="5" fill="#ffffff"/>
+      <circle cx="420" cy="126" r="12" fill="#26323d"/>
+      <circle cx="420" cy="126" r="5" fill="#ffffff"/>
+      <circle cx="481" cy="126" r="12" fill="#26323d"/>
+      <circle cx="481" cy="126" r="5" fill="#ffffff"/>
     </svg>`;
 }
 
 function hhTruckScene(items) {
   const machines = Array.from({ length: HH_TRUCK_CAPACITY }, (_, index) => {
     const occupied = Boolean(items[index]);
-    const x = 172 + index * 82;
+    const x = 178 + index * 78;
     const opacity = occupied ? "1" : "0.18";
     return `
       <g opacity="${opacity}">
-        <rect x="${x}" y="72" width="44" height="24" rx="5" fill="#f4c20d"/>
-        <circle cx="${x + 11}" cy="101" r="8" fill="#26323d"/>
-        <circle cx="${x + 34}" cy="101" r="8" fill="#26323d"/>
-        <path d="M${x + 20} 72l20-22 24 5" fill="none" stroke="#26323d" stroke-width="5" stroke-linecap="round"/>
-        <path d="M${x + 63} 55l18 9-19 8z" fill="#26323d"/>
+        <rect x="${x}" y="76" width="48" height="22" rx="5" fill="#f4c20d" stroke="#26323d" stroke-width="2"/>
+        <rect x="${x + 7}" y="67" width="24" height="13" rx="2" fill="#f4c20d" stroke="#26323d" stroke-width="2"/>
+        <path d="M${x + 24} 68l25-22 27 7" fill="none" stroke="#26323d" stroke-width="5" stroke-linecap="round"/>
+        <path d="M${x + 75} 53l17 9-18 8z" fill="#26323d"/>
+        <rect x="${x + 1}" y="96" width="48" height="7" rx="3" fill="#26323d"/>
+        <circle cx="${x + 13}" cy="104" r="5" fill="#26323d"/>
+        <circle cx="${x + 36}" cy="104" r="5" fill="#26323d"/>
       </g>`;
   }).join("");
 
@@ -419,19 +431,23 @@ function hhTruckScene(items) {
     <svg class="truck-scene hh-carrier-scene" viewBox="0 0 560 150" aria-hidden="true">
       <rect width="560" height="150" rx="8" fill="#d6e6e9"/>
       <rect y="105" width="560" height="45" fill="#e8eef0"/>
-      <path d="M24 66h74l20 24h28v32H24z" fill="#1b2730"/>
-      <path d="M88 70h14l18 20H88z" fill="#dfe8eb"/>
-      <rect x="132" y="98" width="360" height="10" rx="5" fill="#8a4f25"/>
-      <rect x="154" y="82" width="310" height="16" fill="#b16c31"/>
+      <path d="M26 76h78v37h36v14H26z" fill="#f8fafb" stroke="#26323d" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M38 84h30v28H38z" fill="#008fc1" stroke="#26323d" stroke-width="2"/>
+      <path d="M104 113h46v14h-46z" fill="#f8fafb" stroke="#26323d" stroke-width="3"/>
+      <path d="M138 111h25v9h-25z" fill="#26323d"/>
+      <path d="M158 96h338" stroke="#b3163c" stroke-width="12" stroke-linecap="round"/>
+      <path d="M160 84h304v15h-304z" fill="#ff2f65" stroke="#b3163c" stroke-width="3"/>
+      <path d="M462 84l52 17h-52z" fill="#ff2f65" stroke="#b3163c" stroke-width="3"/>
+      <path d="M156 126h358" stroke="#ff2f65" stroke-width="8" stroke-linecap="round"/>
       ${machines}
       <circle cx="55" cy="126" r="12" fill="#26323d"/>
       <circle cx="55" cy="126" r="5" fill="#ffffff"/>
-      <circle cx="123" cy="126" r="12" fill="#26323d"/>
-      <circle cx="123" cy="126" r="5" fill="#ffffff"/>
-      <circle cx="407" cy="126" r="12" fill="#26323d"/>
-      <circle cx="407" cy="126" r="5" fill="#ffffff"/>
-      <circle cx="464" cy="126" r="12" fill="#26323d"/>
-      <circle cx="464" cy="126" r="5" fill="#ffffff"/>
+      <circle cx="120" cy="126" r="12" fill="#26323d"/>
+      <circle cx="120" cy="126" r="5" fill="#ffffff"/>
+      <circle cx="404" cy="126" r="12" fill="#26323d"/>
+      <circle cx="404" cy="126" r="5" fill="#ffffff"/>
+      <circle cx="466" cy="126" r="12" fill="#26323d"/>
+      <circle cx="466" cy="126" r="5" fill="#ffffff"/>
     </svg>`;
 }
 
@@ -502,7 +518,7 @@ function renderOrders() {
 }
 
 function importStatus() {
-  if (state.importStep === "toCenter") return "Move to center";
+  if (state.importStep === "toCenter") return "Scan to center";
   if (state.importStep === "processing") return "Process";
   if (state.importStep === "returnFpor") return "Return FPOR";
   if (state.importStep === "loadingArea") return "Loading area";
@@ -512,7 +528,7 @@ function importStatus() {
 
 function importActionText(item) {
   const center = centerFor(item);
-  if (state.importStep === "toCenter") return `${item.wo}: move ${item.id} from FPOR Zone ${item.target} to ${center}.`;
+  if (state.importStep === "toCenter") return `${item.wo}: scan ${item.id} from FPOR Zone ${item.target} to ${center}.`;
   if (state.importStep === "processing") return `${item.wo}: complete processing at ${center}.`;
   if (state.importStep === "returnFpor") return `${item.wo}: return ${item.id} from ${center} to FPOR Zone ${item.target}.`;
   if (state.importStep === "loadingArea") return `${item.wo}: move ${item.id} from FPOR to Unloading Area.`;
@@ -652,16 +668,23 @@ function render() {
       (truckUnload && (process === truckKindFor(item) || process === "LOADING")) ||
       (processing || importLoading) &&
       ((state.importStep === "toCenter" && process === expectedCenter) ||
-        (state.importStep === "returnFpor" && process === "FPOR") ||
+        (state.importStep === "processing" && process === expectedCenter) ||
+        (state.importStep === "returnFpor" && process === expectedCenter) ||
         (state.importStep === "loadingArea" && process === "LOADING") ||
         (state.importStep === "truck" && process === (expectedCenter === "EPC" ? "HH_TRUCK" : "VEHICLE_TRUCK")));
     card.classList.toggle("ready", ready);
-    card.classList.toggle("inactive", state.flow === "export" && (process === "VPC" || process === "EPC" || process === "FPOR"));
+    card.classList.toggle("from-here", processing && state.importStep === "toCenter" && process === expectedCenter);
+    card.classList.toggle("inactive", state.flow === "export" && (process === "VPC" || process === "EPC"));
   });
   processBtns.forEach((button) => {
-    button.disabled = !(processing && state.importStep === "toCenter");
+    button.disabled = !(processing && state.importStep === "toCenter" && button.dataset.center === expectedCenter);
   });
-  returnFporBtn.disabled = !(processing && state.importStep === "returnFpor");
+  executeBtns.forEach((button) => {
+    button.disabled = !(processing && state.importStep === "processing" && button.dataset.center === expectedCenter);
+  });
+  returnCenterBtns.forEach((button) => {
+    button.disabled = !(processing && state.importStep === "returnFpor" && button.dataset.center === expectedCenter);
+  });
   loadingAreaBtn.disabled = !(importLoading && state.importStep === "loadingArea");
   loadingAreaBtn.textContent = state.flow === "import" ? "Move to Unloading Area" : "Move to Loading Area";
   vehicleTruckBtn.textContent = state.flow === "export" ? "Unload Vehicle Truck" : "Load Vehicle Truck";
@@ -671,9 +694,9 @@ function render() {
   scanBtn.disabled = complete || (!fpor && !vesselUnload) || state.scanned;
   loadBtn.disabled = complete || !deckReady;
   loadBtn.textContent = loading ? `Load ${item.id}` : "Load vehicle";
-  document.querySelector("#completeBtn").disabled = !(processing && state.importStep === "processing");
-  document.querySelector("#completeBtn").textContent = processing && state.importStep === "processing"
-    ? `Complete ${expectedCenter} WO`
+  document.querySelector("#completeBtn").disabled = processing;
+  document.querySelector("#completeBtn").textContent = processing
+    ? "Use VPC/EPC buttons"
     : loading
       ? "Use deck + Load"
       : "Follow WO";
@@ -865,9 +888,17 @@ function loadVehicle() {
   render();
 }
 
-function completeOrder() {
+function completeOrder(center = null) {
   if (state.flow === "import" && state.phase === "processing" && state.importStep === "processing") {
     const item = activeVehicle();
+    const expectedCenter = centerFor(item);
+    if (center && center !== expectedCenter) {
+      state.mistakes += 1;
+      state.score = Math.max(0, state.score - 12);
+      addLog(`${item.wo}: ${item.category} must execute WO in ${expectedCenter}, not ${center}.`);
+      render();
+      return;
+    }
     state.importStep = "returnFpor";
     state.score += 35;
     addLog(`${item.wo}: processing complete at ${centerFor(item)}. Return to FPOR.`);
@@ -894,14 +925,22 @@ function moveToProcessingCenter(center) {
   state.importStep = "processing";
   state.locations[item.id] = center;
   state.score += 25;
-  addLog(`${item.wo}: ${item.id} moved to ${center}. Complete the processing WO.`);
+  addLog(`${item.wo}: ${item.id} scanned from FPOR Zone ${item.target} to ${center}. Execute the WO.`);
   render();
 }
 
-function returnToFpor() {
+function returnToFpor(center = null) {
   if (state.flow !== "import" || state.phase !== "processing" || state.importStep !== "returnFpor") return;
 
   const item = activeVehicle();
+  const expectedCenter = centerFor(item);
+  if (center && center !== expectedCenter) {
+    state.mistakes += 1;
+    state.score = Math.max(0, state.score - 12);
+    addLog(`${item.wo}: ${item.category} must return from ${expectedCenter}, not ${center}.`);
+    render();
+    return;
+  }
   state.locations[item.id] = `FPOR-${item.target}`;
   state.score += 20;
   addLog(`${item.wo}: ${item.id} returned to FPOR Zone ${item.target}.`);
@@ -1020,7 +1059,12 @@ loadBtn.addEventListener("click", loadVehicle);
 processBtns.forEach((button) => {
   button.addEventListener("click", () => moveToProcessingCenter(button.dataset.center));
 });
-returnFporBtn.addEventListener("click", returnToFpor);
+executeBtns.forEach((button) => {
+  button.addEventListener("click", () => completeOrder(button.dataset.center));
+});
+returnCenterBtns.forEach((button) => {
+  button.addEventListener("click", () => returnToFpor(button.dataset.center));
+});
 loadingAreaBtn.addEventListener("click", moveToLoadingArea);
 vehicleTruckBtn.addEventListener("click", handleVehicleTruck);
 hhTruckBtn.addEventListener("click", handleHhTruck);
