@@ -475,25 +475,6 @@ button:disabled {
   line-height: 1.35;
 }
 
-.center-hint {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: none;
-  padding: 5px 8px;
-  background: var(--gold);
-  color: var(--ink);
-  border-radius: 999px;
-  font-size: 0.7rem;
-  font-style: normal;
-  font-weight: 950;
-  box-shadow: 0 4px 0 rgba(16, 33, 45, 0.14);
-}
-
-.process-card.from-here .center-hint {
-  display: inline-block;
-}
-
 .truck-visual {
   position: relative;
   min-height: 206px;
@@ -726,11 +707,13 @@ button:disabled {
   box-shadow: 0 4px 0 rgba(16, 33, 45, 0.14);
 }
 
-.zone.recommended {
+.zone.recommended,
+.zone.from-here {
   animation: pulse-zone 900ms ease-in-out infinite alternate;
 }
 
-.zone.recommended .zone-hint {
+.zone.recommended .zone-hint,
+.zone.from-here .zone-hint {
   display: inline-block;
 }
 
@@ -1119,6 +1102,21 @@ button:disabled {
 
   .processing-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .process-card[data-process="LOADING"] {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .process-card[data-process="VEHICLE_TRUCK"] {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .process-card[data-process="HH_TRUCK"] {
+    grid-column: 3;
+    grid-row: 2;
   }
 
   .ship-visual {
