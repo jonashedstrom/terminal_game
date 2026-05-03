@@ -450,6 +450,7 @@ button:disabled {
 }
 
 .process-card {
+  position: relative;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
@@ -472,6 +473,25 @@ button:disabled {
   font-size: 0.84rem;
   font-weight: 700;
   line-height: 1.35;
+}
+
+.center-hint {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+  padding: 5px 8px;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 950;
+  box-shadow: 0 4px 0 rgba(16, 33, 45, 0.14);
+}
+
+.process-card.from-here .center-hint {
+  display: inline-block;
 }
 
 .truck-visual {
@@ -568,6 +588,19 @@ button:disabled {
   font-weight: 850;
 }
 
+.center-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.center-actions button:nth-child(2) {
+  background: var(--ocean);
+}
+
+.center-actions button:nth-child(3) {
+  background: #5f6f78;
+}
+
 .process-card.ready {
   border-color: var(--gold);
   box-shadow:
@@ -595,9 +628,10 @@ button:disabled {
 .zone {
   position: relative;
   display: grid;
-  align-content: space-between;
-  min-height: 132px;
-  padding: 16px 14px 18px;
+  align-content: start;
+  gap: 7px;
+  min-height: 154px;
+  padding: 16px 14px 72px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.55), transparent 34%),
     linear-gradient(90deg, rgba(16, 33, 45, 0.06) 1px, transparent 1px),
@@ -620,25 +654,30 @@ button:disabled {
 }
 
 .zone::before {
-  right: 15px;
-  bottom: 26px;
-  width: 44px;
-  height: 28px;
-  background: var(--signal);
-  border: 3px solid #ffffff;
-  border-radius: 8px 8px 5px 5px;
-  box-shadow:
-    -55px 18px 0 -4px var(--ocean),
-    -101px -12px 0 -6px var(--gold);
+  right: 14px;
+  bottom: 16px;
+  left: 14px;
+  height: 44px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0 2px, transparent 2px 33.33%),
+    linear-gradient(180deg, transparent 0 18px, rgba(16, 33, 45, 0.18) 18px 21px, transparent 21px),
+    rgba(255, 255, 255, 0.34);
+  background-size: 33.33% 100%, 100% 100%, auto;
+  border: 2px solid rgba(143, 162, 143, 0.55);
+  border-radius: 7px;
 }
 
 .zone::after {
-  left: 18px;
-  bottom: 12px;
-  width: 72%;
-  height: 8px;
-  background: repeating-linear-gradient(90deg, #f8fbfb 0 16px, transparent 16px 26px);
-  opacity: 0.9;
+  right: 26px;
+  bottom: 27px;
+  width: 34px;
+  height: 22px;
+  background: var(--signal);
+  border: 3px solid #ffffff;
+  border-radius: 7px 7px 4px 4px;
+  box-shadow:
+    -46px 0 0 -1px var(--ocean),
+    -92px 0 0 -1px var(--gold);
 }
 
 .zone:hover,
@@ -768,6 +807,25 @@ button:disabled {
   fill: #d9e1e2;
 }
 
+.stern-ramp path:first-child {
+  fill: #303943;
+  stroke: #111922;
+  stroke-width: 3;
+}
+
+.stern-ramp path:nth-child(2) {
+  fill: #5b6570;
+  stroke: #202a33;
+  stroke-width: 2;
+}
+
+.stern-ramp path:nth-child(n + 3) {
+  fill: none;
+  stroke: #c7d0d3;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
 .bridge,
 .bridge-base,
 .bridge-roof {
@@ -834,7 +892,7 @@ button:disabled {
 
 .deck-floor {
   display: grid;
-  grid-template-columns: minmax(58px, 0.35fr) auto;
+  grid-template-columns: minmax(96px, 0.35fr) auto;
   gap: 8px 10px;
   align-items: center;
   min-height: 58px;
@@ -860,8 +918,17 @@ button:disabled {
 }
 
 .deck-title {
+  display: grid;
+  place-items: center;
+  min-height: 30px;
+  padding: 5px 8px;
+  background: var(--navy);
+  border-radius: 6px;
   color: var(--navy);
-  font-size: 0.8rem;
+  color: white;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .deck-count {
